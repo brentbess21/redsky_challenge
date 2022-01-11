@@ -1,4 +1,4 @@
-import { React, useEffect, useState }  from 'react';
+import React, { useEffect, useState }  from 'react';
 import axios from 'axios';
 
 import UserList from './components/UserList';
@@ -14,21 +14,21 @@ function App() {
     axios.get('https://reqres.in/api/users')
       .then(res=> {
         const userData = res.data.data;
-        setUsers(userData)
+        setUsers(userData);
       })
       .catch(err=> {
         console.error(err)
       })
   }
 
-  useEffect = (()=> {
+  useEffect(()=> {
     getUsers();
-  })
+  },[])
+
   return (
     <div className="app">
       <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
       <UserList users={users}/>
-      <button onClick={getUsers}>Get Users</button>
     </div>
   );
 }
