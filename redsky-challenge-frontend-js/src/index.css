@@ -1,0 +1,152 @@
+/* ------------------- */
+/* Custom properties   */
+/* ------------------- */
+
+:root {
+  /* colors */
+  --clr-primary: #DD013F;
+  --clr-secondary: #081430;
+  --clr-white: #FFFFFF;
+  --clr-gray: #D3D3D3;
+  --clr-overlay: #08143060; 
+
+  /* font-sizes */
+  /* --fs-900: clamp(5rem, calc(8vw + 1rem), 9.375rem);
+  --fs-800: 3.5rem;
+  --fs-700: 1.5rem;
+  --fs-600: 1rem;
+  --fs-500: 1rem;
+  --fs-400: 0.9375rem;
+  --fs-300: 1rem;
+  --fs-200: 0.875rem; */
+
+  --fs-600: 48px;
+  --fs-400: 24px;
+  --fs-200: 18px;
+
+  /* font-families */
+  --ff-serif: 'Marcellus', serif;
+  --ff-sans: 'Montserrat', sans-serif;
+}
+
+
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+  font-family: var(--ff-sans);
+  font-size: var(--fs-400);
+  color: var(--clr-secondary);
+  background-color: var(--clr-white);
+  line-height: 1;
+  min-height: 100vh;
+  letter-spacing: 0px;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* ----------------------- */
+/* Utility Classes         */
+/* ----------------------- */
+
+
+/* general */
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.display-block {
+  display: block;
+}
+
+.flow > * + * {
+  margin-top: var(--flow-space, 1rem);
+}
+
+.container {
+  padding-inline: 2em;
+  margin-inline: auto;
+  max-width: 80rem;
+}
+
+/* colors */
+
+.bg-primary { background-color: var(--clr-primary); }
+.bg-secondary { background-color: var(--clr-secondary); }
+.bg-white { background-color: var(--clr-white); }
+.bg-overlay { background-color: var(--clr-overlay); }
+
+
+.txt-primary { color: var(--clr-primary); }
+.txt-secondary { color: var(--clr-secondary); }
+.txt-white { color: var(--clr-white); }
+
+
+/* typography */
+
+.ff-serif { font-family: var(--ff-serif); } 
+.ff-sans { font-family: var(--ff-sans); } 
+.ff-sans-bold { font-family: var(--ff-sans); font-weight: 600; } 
+
+.letter-spacing-button { letter-spacing: 0.4px; } 
+
+.uppercase { text-transform: uppercase; }
+
+.fs-600 { font-size: var(--fs-600); }
+.fs-400 { font-size: var(--fs-400); }
+.fs-200 { font-size: var(--fs-200); }
+
+
