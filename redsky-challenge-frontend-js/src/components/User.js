@@ -3,8 +3,8 @@ import React from 'react';
 const User = (props) => {
     const { user } = props;
     return (
-        <tr>
-            <td>picture</td>
+        <tr className='fs-200'>
+            <td><img src={user.avatar} alt={user.last_name} className='avatar' /></td>
             <td>{user.first_name}</td>
             <td>{user.last_name}</td>
             <td>{user.email}</td>

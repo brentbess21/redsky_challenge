@@ -8,13 +8,9 @@ const UserList = (props) => {
 
     return (
         <div>
+            <h3 className='fs-400 ff-sans-bold uppercase table-header'>User List</h3>
             <table>
-              <thead>
-                  <tr>
-                      <th>User List</th>
-                  </tr>
-              </thead>
-              <thead>
+              <thead className='ff-sans-bold fs-200 uppercase'>
                   <tr>
                       <th>Avatar</th>
                       <th>First Name</th>

@@ -103,11 +103,6 @@ table {
   gap: var(--gap, 1rem);
 }
 
-.grid {
-  display: grid;
-  gap: var(--gap, 1rem);
-}
-
 .display-block {
   display: block;
 }
@@ -117,9 +112,9 @@ table {
 }
 
 .container {
-  padding-inline: 2em;
+  /* padding-inline: 2em;
   margin-inline: auto;
-  max-width: 80rem;
+  max-width: 80rem; */
 }
 
 /* colors */
@@ -150,3 +145,27 @@ table {
 .fs-200 { font-size: var(--fs-200); }
 
 
+
+
+.table-header {
+  background-color: var(--clr-primary);
+  color: var(--clr-white);
+  padding: 10px;
+  width: 80vw;
+}
+
+table {
+  border: 2px solid var(--clr-primary);
+  width: 80vw;
+}
+
+th, td {
+  border-bottom: 1px solid var(--clr-gray);
+  text-align: left;
+  padding: 10px;
+}
+
+
+.avatar {
+  width: 50%;
+}

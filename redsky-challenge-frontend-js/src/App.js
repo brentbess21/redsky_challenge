@@ -26,8 +26,9 @@ function App() {
   },[])
 
   return (
-    <div className="app">
+    <div className="flow">
       <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
+      <button>Create New User</button>
       <UserList users={users}/>
     </div>
   );
