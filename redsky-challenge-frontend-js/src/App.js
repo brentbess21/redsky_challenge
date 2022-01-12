@@ -48,7 +48,7 @@ function App() {
       <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
       <button>Create New User</button>
       <NewUserForm createUserFormValues={createUserFormValues} setCreateUserFormValues={setCreateUserFormValues} postNewUser={postNewUser} initialCreateUserValues={initialCreateUserValues} />
-      <UserList users={users}/>
+      <UserList users={users} setUsers={setUsers}/>
     </div>
   );
 }

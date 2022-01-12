@@ -4,7 +4,7 @@ import User from './User';
 
 const UserList = (props) => {
 
-    const { users } = props;
+    const { users, setUsers } = props;
 
     return (
         <div>
@@ -20,7 +20,7 @@ const UserList = (props) => {
               </thead>
               <tbody>
                   {users.map(user=> {
-                      return <User user={user} key={user.id}/>
+                      return <User user={user} users={users} key={user.id} setUsers={setUsers}/>
                   })}
               </tbody>
             </table>

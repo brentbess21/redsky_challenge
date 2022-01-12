@@ -1,7 +1,21 @@
 import React from 'react';
 
+import axios from 'axios';
+
+
 const User = (props) => {
-    const { user } = props;
+    const { user, setUsers, users } = props;
+
+    const deleteUser = () =>{
+        axios.delete(`https://reqres.in/api/users/${user.id}`) 
+        .then(res=> {
+            setUsers(users.filter(u=>u.id!==user.id))
+        })  
+        .catch(err=> {
+            console.error(err)
+        })
+    }
+    
     return (
         <tr className='fs-200'>
             <td><img src={user.avatar} alt={user.last_name} className='avatar' /></td>
@@ -9,7 +23,7 @@ const User = (props) => {
             <td>{user.last_name}</td>
             <td>{user.email}</td>
             <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
+            <td><button onClick={deleteUser}>Delete</button></td>
         </tr>
     )
 }
