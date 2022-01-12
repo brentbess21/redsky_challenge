@@ -16,7 +16,8 @@ const initialUsers = []
 function App() {
 
   const [ users, setUsers ] = useState(initialUsers);
-  const [ createUserFormValues, setCreateUserFormValues ] = useState(initialCreateUserValues)
+  const [ createUserFormValues, setCreateUserFormValues ] = useState(initialCreateUserValues);
+  const [ showModal, setShowModal ] = useState(false);
 
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')
@@ -39,6 +40,10 @@ function App() {
       })
   }
 
+  const openModal = () => {
+    setShowModal(prev => !prev)
+  }
+
   useEffect(()=> {
     getUsers();
   },[])
@@ -46,8 +51,8 @@ function App() {
   return (
     <div className="flow">
       <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
-      <button>Create New User</button>
-      <NewUserForm createUserFormValues={createUserFormValues} setCreateUserFormValues={setCreateUserFormValues} postNewUser={postNewUser} initialCreateUserValues={initialCreateUserValues} />
+      <button onClick={openModal}>Create New User</button>
+      <NewUserForm createUserFormValues={createUserFormValues} setCreateUserFormValues={setCreateUserFormValues} postNewUser={postNewUser} initialCreateUserValues={initialCreateUserValues} showModal={showModal} setShowModal={setShowModal} />
       <UserList users={users} setUsers={setUsers}/>
     </div>
   );

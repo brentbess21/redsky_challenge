@@ -2,7 +2,7 @@ import React from 'react';
 
 const NewUserForm = (props) => {
 
-    const { createUserFormValues, setCreateUserFormValues, postNewUser, initialCreateUserValues } = props;
+    const { createUserFormValues, setCreateUserFormValues, postNewUser, initialCreateUserValues, showModal, setShowModal } = props;
 
     const changeHandler = (e) => {
         const name = e.target.name
@@ -22,9 +22,12 @@ const NewUserForm = (props) => {
         postNewUser(newUser);
         setCreateUserFormValues(initialCreateUserValues);
     }
+    
     return(
         <div>
-            <h3>Create New User</h3>
+            {showModal ? (
+                <div>
+                    <h3>Create New User</h3>
             <form>
                 <label>First Name</label>
                 <input 
@@ -60,6 +63,10 @@ const NewUserForm = (props) => {
 
                 <button onClick={submitHandler}>Submit</button>
             </form>
+                </div>
+            
+            ) : <div></div> }
+            
         </div>
     )
 }
