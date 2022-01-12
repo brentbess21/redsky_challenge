@@ -29,6 +29,16 @@ function App() {
       })
   }
 
+  const postNewUser = (newUser) => {
+    axios.post('https://reqres.in/api/users', newUser)
+      .then(res => {
+        setUsers([res.data, ...users])
+      })
+      .catch(err=> {
+        console.error(err);
+      })
+  }
+
   useEffect(()=> {
     getUsers();
   },[])
@@ -37,7 +47,7 @@ function App() {
     <div className="flow">
       <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
       <button>Create New User</button>
-      <NewUserForm createUserFormValues={createUserFormValues} setCreateUserFormValues={setCreateUserFormValues} />
+      <NewUserForm createUserFormValues={createUserFormValues} setCreateUserFormValues={setCreateUserFormValues} postNewUser={postNewUser} initialCreateUserValues={initialCreateUserValues} />
       <UserList users={users}/>
     </div>
   );

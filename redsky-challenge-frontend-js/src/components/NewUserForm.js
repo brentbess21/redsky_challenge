@@ -2,7 +2,7 @@ import React from 'react';
 
 const NewUserForm = (props) => {
 
-    const { createUserFormValues, setCreateUserFormValues } = props;
+    const { createUserFormValues, setCreateUserFormValues, postNewUser, initialCreateUserValues } = props;
 
     const changeHandler = (e) => {
         const name = e.target.name
@@ -12,6 +12,15 @@ const NewUserForm = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        const newUser = {
+            id: Date.now(),
+            first_name: createUserFormValues.first_name,
+            last_name: createUserFormValues.last_name,
+            email: createUserFormValues.email,
+            avatar: createUserFormValues.avatar
+        }
+        postNewUser(newUser);
+        setCreateUserFormValues(initialCreateUserValues);
     }
     return(
         <div>
