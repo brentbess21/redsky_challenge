@@ -21,50 +21,57 @@ const NewUserForm = (props) => {
         }
         postNewUser(newUser);
         setCreateUserFormValues(initialCreateUserValues);
+        setShowModal(false);
     }
     
     return(
         <div>
             {showModal ? (
-                <div>
-                    <h3>Create New User</h3>
-            <form>
-                <label>First Name</label>
-                <input 
-                type='text'
-                name='first_name'
-                value={createUserFormValues.first_name}
-                onChange={changeHandler}
-                />
+                <div className='modal-background'>
+                    <div className='modal-container'>
+                        <div className='modal-header'>
+                            <h3>Create New User</h3>
+                        </div>
 
-                <label>Last Name</label>
-                <input 
-                type='text'
-                name='last_name'
-                value={createUserFormValues.last_name}
-                onChange={changeHandler}
-                />
+                        <div className='modal-content'>
+                            <form>
+                                <label className='block uppercase'>First Name</label>
+                                <input 
+                                type='text'
+                                name='first_name'
+                                value={createUserFormValues.first_name}
+                                onChange={changeHandler}
+                                />
 
-                <label>Email Address</label>
-                <input 
-                type='email'
-                name='email'
-                value={createUserFormValues.email}
-                onChange={changeHandler}
-                />
+                                <label className='block uppercase'>Last Name</label>
+                                <input 
+                                type='text'
+                                name='last_name'
+                                value={createUserFormValues.last_name}
+                                onChange={changeHandler}
+                                />
 
-                <label>Avatar Image Link</label>
-                <input 
-                type='text'
-                name='avatar'
-                value={createUserFormValues.avatar}
-                onChange={changeHandler}
-                />
+                                <label className='block uppercase'>Email Address</label>
+                                <input 
+                                type='email'
+                                name='email'
+                                value={createUserFormValues.email}
+                                onChange={changeHandler}
+                                />
 
-                <button onClick={submitHandler}>Submit</button>
-            </form>
+                                <label className='block uppercase ff-sans'>Avatar Image Link</label>
+                                <input 
+                                type='text'
+                                name='avatar'
+                                value={createUserFormValues.avatar}
+                                onChange={changeHandler}
+                                />
+                                <button onClick={()=> setShowModal(false)} className='button-outline'>Cancel</button>
+                                <button onClick={submitHandler} className='button'>Create</button>
+                            </form>
+                        </div>                  
+                    </div>
                 </div>
-            
             ) : <div></div> }
             
         </div>

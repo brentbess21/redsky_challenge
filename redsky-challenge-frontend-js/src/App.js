@@ -49,9 +49,16 @@ function App() {
   },[])
 
   return (
-    <div className="flow">
-      <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
-      <button onClick={openModal}>Create New User</button>
+    <div className='app'>
+      {showModal ? <div onClick={openModal} className='modal-background'></div> : null}
+      <div className='title'>
+        <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
+      </div>
+
+      <div className='create-user-btn'>
+        <button onClick={openModal} className='button'>Create New User</button>
+      </div>
+
       <NewUserForm createUserFormValues={createUserFormValues} setCreateUserFormValues={setCreateUserFormValues} postNewUser={postNewUser} initialCreateUserValues={initialCreateUserValues} showModal={showModal} setShowModal={setShowModal} />
       <UserList users={users} setUsers={setUsers}/>
     </div>

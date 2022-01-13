@@ -15,15 +15,15 @@ const User = (props) => {
             console.error(err)
         })
     }
-    
+
     return (
         <tr className='fs-200'>
             <td><img src={user.avatar} alt={user.last_name} className='avatar' /></td>
             <td>{user.first_name}</td>
             <td>{user.last_name}</td>
             <td>{user.email}</td>
-            <td><button>Edit</button></td>
-            <td><button onClick={deleteUser}>Delete</button></td>
+            <td><button className='button'>Edit</button></td>
+            <td><button onClick={deleteUser} className='button'>Delete</button></td>
         </tr>
     )
 }
