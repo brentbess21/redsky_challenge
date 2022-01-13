@@ -172,7 +172,6 @@ table {
 
 .create-user-btn {
   display: flex;
-  border: 2px solid green;
   width: 90%;
   justify-content: flex-end;
   margin: 2rem auto;
@@ -208,7 +207,6 @@ th, td {
 
 .user-list {
   width: 90%;
-  border: 2px solid blue;
   margin: 0 auto;
 }
 

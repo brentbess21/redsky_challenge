@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const User = (props) => {
 
-    const { user, setUsers, users } = props;
+    const { user, setUsers, users, showEditModal, setShowEditModal } = props;
 
     const deleteUser = () =>{
         axios.delete(`https://reqres.in/api/users/${user.id}`) 
@@ -17,15 +17,9 @@ const User = (props) => {
         })
     }
 
-    const updateUser = () => {
-        axios.put(`https://reqres.in/api/users/${user.id}`)
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err=> {
-            console.log(err)
-        })
-    }
+   const openModal = () => {
+       setShowEditModal(true);
+   }
 
     return (
         <tr className='fs-200'>
@@ -33,7 +27,7 @@ const User = (props) => {
             <td>{user.first_name}</td>
             <td>{user.last_name}</td>
             <td>{user.email}</td>
-            <td><button onClick={updateUser} className='button'>Edit</button></td>
+            <td><button onClick={openModal} className='button'>Edit</button></td>
             <td><button onClick={deleteUser} className='button'>Delete</button></td>
         </tr>
     )

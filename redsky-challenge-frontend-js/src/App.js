@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import UserList from './components/UserList';
 import NewUserForm from './components/NewUserForm';
+import EditUserForm from './components/EditUserForm';
 
 
 const initialUserValues = {
@@ -19,6 +20,8 @@ function App() {
   const [ users, setUsers ] = useState(initialUsers);
   const [ userFormValues, setUserFormValues ] = useState(initialUserValues);
   const [ showCreateModal, setShowCreateModal ] = useState(false);
+  const [ showEditModal, setShowEditModal ] = useState(false);
+
 
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')
@@ -41,8 +44,18 @@ function App() {
       })
   }
 
+  // const updateUser = (updatedUser) => {
+  //   axios.put(`https://reqres.in/api/users/${user.id}`)
+  //     .then(res=> {
+
+  //     })
+  //     .catch(err=> {
+  //       console.error(err)
+  //     })
+  // }
+
   const openModal = () => {
-    setShowCreateModal(toggle => !toggle)
+    setShowCreateModal(true);
   }
 
   useEffect(()=> {
@@ -51,7 +64,7 @@ function App() {
 
   return (
     <div className=''>
-      {showCreateModal ? <div onClick={openModal} className='modal-background'></div> : null}
+      {showCreateModal || showEditModal ? <div className='modal-background'></div> : null}
       <div className='app-container'>
         <div className='title'>
           <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
@@ -63,7 +76,8 @@ function App() {
 
 
         <NewUserForm userFormValues={userFormValues} setUserFormValues={setUserFormValues} postNewUser={postNewUser} initialUserValues={initialUserValues} showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} />
-        <UserList users={users} setUsers={setUsers}/>
+        <EditUserForm showEditModal={showEditModal} setShowEditModal={setShowEditModal} />
+        <UserList users={users} setUsers={setUsers} showEditModal={showEditModal} setShowEditModal={setShowEditModal}/>
       </div>
     </div>
   );

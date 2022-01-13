@@ -4,7 +4,7 @@ import User from './User';
 
 const UserList = (props) => {
 
-    const { users, setUsers } = props;
+    const { users, setUsers, showEditModal, setShowEditModal } = props;
 
     return (
         <main className='user-list'>
@@ -22,7 +22,7 @@ const UserList = (props) => {
               </thead>
               <tbody>
                   {users.map(user=> {
-                      return <User user={user} users={users} key={user.id} setUsers={setUsers}/>
+                      return <User user={user} users={users} key={user.id} setUsers={setUsers} showEditModal={showEditModal} setShowEditModal={setShowEditModal}/>
                   })}
               </tbody>
             </table>
