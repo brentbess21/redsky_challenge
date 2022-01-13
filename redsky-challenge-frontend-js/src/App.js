@@ -5,19 +5,20 @@ import UserList from './components/UserList';
 import NewUserForm from './components/NewUserForm';
 
 
-const initialCreateUserValues = {
+const initialUserValues = {
   first_name: '',
   last_name: '',
   email: '',
   avatar: ''
 }
+
 const initialUsers = []
 
 function App() {
 
   const [ users, setUsers ] = useState(initialUsers);
-  const [ createUserFormValues, setCreateUserFormValues ] = useState(initialCreateUserValues);
-  const [ showModal, setShowModal ] = useState(false);
+  const [ userFormValues, setUserFormValues ] = useState(initialUserValues);
+  const [ showCreateModal, setShowCreateModal ] = useState(false);
 
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')
@@ -41,7 +42,7 @@ function App() {
   }
 
   const openModal = () => {
-    setShowModal(prev => !prev)
+    setShowCreateModal(toggle => !toggle)
   }
 
   useEffect(()=> {
@@ -49,18 +50,21 @@ function App() {
   },[])
 
   return (
-    <div className='app'>
-      {showModal ? <div onClick={openModal} className='modal-background'></div> : null}
-      <div className='title'>
-        <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
-      </div>
+    <div className=''>
+      {showCreateModal ? <div onClick={openModal} className='modal-background'></div> : null}
+      <div className='app-container'>
+        <div className='title'>
+          <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
+        </div>
 
-      <div className='create-user-btn'>
-        <button onClick={openModal} className='button'>Create New User</button>
-      </div>
+        <div className='create-user-btn'>
+          <button onClick={openModal} className='button'>Create New User</button>
+        </div>
 
-      <NewUserForm createUserFormValues={createUserFormValues} setCreateUserFormValues={setCreateUserFormValues} postNewUser={postNewUser} initialCreateUserValues={initialCreateUserValues} showModal={showModal} setShowModal={setShowModal} />
-      <UserList users={users} setUsers={setUsers}/>
+
+        <NewUserForm userFormValues={userFormValues} setUserFormValues={setUserFormValues} postNewUser={postNewUser} initialUserValues={initialUserValues} showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} />
+        <UserList users={users} setUsers={setUsers}/>
+      </div>
     </div>
   );
 }

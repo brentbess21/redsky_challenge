@@ -4,6 +4,7 @@ import axios from 'axios';
 
 
 const User = (props) => {
+
     const { user, setUsers, users } = props;
 
     const deleteUser = () =>{
@@ -16,13 +17,23 @@ const User = (props) => {
         })
     }
 
+    const updateUser = () => {
+        axios.put(`https://reqres.in/api/users/${user.id}`)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err=> {
+            console.log(err)
+        })
+    }
+
     return (
         <tr className='fs-200'>
             <td><img src={user.avatar} alt={user.last_name} className='avatar' /></td>
             <td>{user.first_name}</td>
             <td>{user.last_name}</td>
             <td>{user.email}</td>
-            <td><button className='button'>Edit</button></td>
+            <td><button onClick={updateUser} className='button'>Edit</button></td>
             <td><button onClick={deleteUser} className='button'>Delete</button></td>
         </tr>
     )
