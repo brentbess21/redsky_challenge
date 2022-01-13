@@ -4,6 +4,7 @@ import axios from 'axios';
 import UserList from './components/UserList';
 import NewUserForm from './components/NewUserForm';
 import EditUserForm from './components/EditUserForm';
+import ActionToast from './components/ActionToast';
 
 
 const initialUserValues = {
@@ -21,7 +22,7 @@ function App() {
   const [ userFormValues, setUserFormValues ] = useState(initialUserValues);
   const [ showCreateModal, setShowCreateModal ] = useState(false);
   const [ showEditModal, setShowEditModal ] = useState(false);
-
+  const [ showToast, setShowToast ] = useState(false)
 
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')
@@ -38,6 +39,7 @@ function App() {
     axios.post('https://reqres.in/api/users', newUser)
       .then(res => {
         setUsers([res.data, ...users])
+        setShowToast(true);
       })
       .catch(err=> {
         console.error(err);
@@ -63,23 +65,27 @@ function App() {
   },[])
 
   return (
-    <div className=''>
+
+    <div>
       {showCreateModal || showEditModal ? <div className='modal-background'></div> : null}
       <div className='app-container'>
-        <div className='title'>
-          <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
-        </div>
+          <ActionToast showToast={showToast} setShowToast={setShowToast} />
 
-        <div className='create-user-btn'>
-          <button onClick={openModal} className='button'>Create New User</button>
-        </div>
+          <div className='title'>
+            <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
+          </div>
+
+          <div className='create-user-btn'>
+            <button onClick={openModal} className='button'>Create New User</button>
+          </div>
 
 
-        <NewUserForm userFormValues={userFormValues} setUserFormValues={setUserFormValues} postNewUser={postNewUser} initialUserValues={initialUserValues} showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} />
-        <EditUserForm showEditModal={showEditModal} setShowEditModal={setShowEditModal} />
-        <UserList users={users} setUsers={setUsers} showEditModal={showEditModal} setShowEditModal={setShowEditModal}/>
+          <NewUserForm userFormValues={userFormValues} setUserFormValues={setUserFormValues} postNewUser={postNewUser} initialUserValues={initialUserValues} showCreateModal={showCreateModal} setShowCreateModal={setShowCreateModal} />
+          <EditUserForm userFormValues={userFormValues} setUserFormValues={setUserFormValues} showEditModal={showEditModal} setShowEditModal={setShowEditModal} />
+          <UserList users={users} setUsers={setUsers} showEditModal={showEditModal} setShowEditModal={setShowEditModal}/>
       </div>
     </div>
+
   );
 }
 
