@@ -1,10 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { connect } from 'react-redux';
+
+import { getUsers } from './../actions/users-actions';
 
 import User from './User';
 
 const UserList = (props) => {
 
-    const { users, setUsers, showEditModal, setShowEditModal } = props;
+    const { users, getUsers } = props
+
+    useEffect(()=> {
+        getUsers();
+    },[])
 
     return (
         <main className='user-list'>
@@ -22,7 +29,7 @@ const UserList = (props) => {
               </thead>
               <tbody>
                   {users.map(user=> {
-                      return <User user={user} users={users} key={user.id} setUsers={setUsers} showEditModal={showEditModal} setShowEditModal={setShowEditModal}/>
+                      return <User user={user} users={users} key={user.id} />
                   })}
               </tbody>
             </table>
@@ -30,4 +37,14 @@ const UserList = (props) => {
     )
 }
 
-export default UserList;
+const mapStateToProps = (state) => {
+    return({
+        loading: state.loading,
+        error: state.error,
+        users: state.users,
+    })
+}
+
+const mapDispatchToProps = {getUsers}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);

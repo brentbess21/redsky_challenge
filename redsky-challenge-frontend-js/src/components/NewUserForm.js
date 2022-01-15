@@ -1,32 +1,41 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+import { closeCreateModal, updateFormValues, resetFormValues, createNewUser } from './../actions/users-actions';
+
 const NewUserForm = (props) => {
 
-    const { userFormValues, setUserFormValues, postNewUser, initialUserValues, showCreateModal, setShowCreateModal } = props;
+    const { userFormValues, showCreateModal, closeCreateModal, updateFormValues, createNewUser, resetFormValues } = props;
 
-    const changeHandler = (e) => {
-        const name = e.target.name
-        const value = e.target.value
-        setUserFormValues({...userFormValues, [name]: value})
-    }
-
-    const submitHandler = (e) => {
-        e.preventDefault();
-        const newUser = {
-            id: Date.now(),
-            first_name: userFormValues.first_name,
-            last_name: userFormValues.last_name,
-            email: userFormValues.email,
-            avatar: userFormValues.avatar
+        const changeHandler = (e) => {
+            const name = e.target.name
+            const value = e.target.value
+            updateFormValues({...userFormValues, [name]: value})
         }
-        postNewUser(newUser);
-        setUserFormValues(initialUserValues);
-        setShowCreateModal(false);
-    }
+
+        const cancelHandler = (e) => {
+            e.preventDefault();
+            closeCreateModal();
+            resetFormValues();
+        }
+
+        const submitHandler = (e) => {
+            e.preventDefault();
+            const newUser = {
+                id: Date.now(),
+                first_name: userFormValues.first_name,
+                last_name: userFormValues.last_name,
+                email: userFormValues.email,
+                avatar: userFormValues.avatar
+            }
+            createNewUser(newUser);
+            resetFormValues();
+        }
     
     return(
         <div>
             {showCreateModal ? (
+                <div className='modal-background'>
                     <div className='modal-container'>
                         <div className='modal-header'>
                             <h3>Create New User</h3>
@@ -65,15 +74,29 @@ const NewUserForm = (props) => {
                                 value={userFormValues.avatar}
                                 onChange={changeHandler}
                                 />
-                                <button onClick={()=> setShowCreateModal(false)} className='button-outline'>Cancel</button>
-                                <button onClick={submitHandler} className='button'>Create</button>
+                                <div className='form-buttons'>
+                                    <button onClick={cancelHandler} className='button-outline'>Cancel</button>
+                                    <button onClick={submitHandler} className='button'>Create</button>
+                                </div>
                             </form>
                         </div>                  
                     </div>
+                </div>
             ) : <div></div> }
             
         </div>
     )
 }
 
-export default NewUserForm;
+
+const mapStateToProps = (state) => {
+    return({
+        loading: state.loading,
+        showCreateModal: state.showCreateModal,
+        userFormValues: state.userFormValues
+    })
+}
+
+const mapDispatchToProps = {closeCreateModal, updateFormValues, resetFormValues, createNewUser}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewUserForm);

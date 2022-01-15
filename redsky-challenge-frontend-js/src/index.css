@@ -215,19 +215,25 @@ th, td {
 
 .modal-background {
   background: var(--clr-overlay);
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   position: fixed;
   transition: all .3s;
   border: 2px solid yellow;
+  top: 0;
+  left: 0;
 }
 
 .modal-container {
   background: var(--clr-white);
-  width: 80%;
+  width: 60%;
   max-width: 600px;
   margin: 0 auto;
-  position: relative;
+  position: fixed;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
 
 .modal-header {
@@ -235,6 +241,11 @@ th, td {
   color: var(--clr-white);
   padding: 10px 5%;
   width: 100%;
+}
+
+.modal-content {
+  overflow-y: auto;
+  height: 80vh;
 }
 
 input {
@@ -247,4 +258,13 @@ label {
   margin: 1.5rem 5% 0;
 }
 
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem;
+}
+
+.form-buttons button {
+  margin: .5rem;
+}
 
