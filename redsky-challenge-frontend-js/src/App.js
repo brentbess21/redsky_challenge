@@ -6,33 +6,19 @@ import NewUserForm from './components/NewUserForm';
 import EditUserForm from './components/EditUserForm';
 import ActionToast from './components/ActionToast';
 
-import { openCreateModal, openEditModal, closeCreateModal, closeEditModal } from './actions/users-actions';
+
+import { openCreateModal } from './actions/users-actions';
 
 
 function App(props) {
 
-  const { openCreateModal, openEditModal } = props;
-
-  // const updateUser = (updatedUser) => {
-  //   axios.put(`https://reqres.in/api/users/${user.id}`)
-  //     .then(res=> {
-
-  //     })
-  //     .catch(err=> {
-  //       console.error(err)
-  //     })
-  // }
-
-  // const openModal = () => {
-  //   setShowCreateModal(true);
-  // }
-
+  const { openCreateModal } = props;
 
   return (
 
     <div>
       <div className='app-container'>
-          {/* <ActionToast /> */}
+          <ActionToast />
 
           <div className='title'>
             <h1 className='ff-serif fs-600 uppercase'>Redsky Coding Challenge</h1>
@@ -41,7 +27,6 @@ function App(props) {
           <div className='create-user-btn'>
             <button onClick={openCreateModal} className='button'>Create New User</button>
           </div>
-
           <NewUserForm />
           <EditUserForm />
           <UserList />
@@ -54,10 +39,9 @@ function App(props) {
 const mapStateToProps = (state) => {
   return({
     showCreateModal: state.showCreateModal,
-    showEditModal: state.showEditModal
   })
 }
 
-const mapDispatchToProps = {openCreateModal, openEditModal}
+const mapDispatchToProps = {openCreateModal}
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

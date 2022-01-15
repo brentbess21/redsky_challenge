@@ -19,6 +19,8 @@ export const ERROR_DELETE_USER = 'ERROR_DELETE_USER';
 export const START_UPDATE_USER = 'START_UPDATE_USER';
 export const SUCCESS_UPDATE_USER = 'SUCCESS_UPDATE_USER';
 export const ERROR_UPDATE_USER = 'ERROR_UPDATE_USER';
+export const SHOW_TOAST = 'SHOW_TOAST';
+export const HIDE_TOAST = 'HIDE_TOAST';
 
 
 export const getUsers = () => (dispatch) => {
@@ -63,7 +65,6 @@ export const updateUser = (userInfo) => (dispatch) => {
 
     axios.put(`https://reqres.in/api/users/${userInfo.id}`)
         .then(res=> {
-            console.log('FROM ACTIONS',res)
             dispatch({type: SUCCESS_UPDATE_USER, payload: userInfo})
         })
         .catch(err => {
@@ -76,7 +77,6 @@ export const openCreateModal = () => {
 }
 
 export const openEditModal = () => {
-    console.log('YOU HIT THE OPEN EDIT MODAL BUTTON')
     return({type: OPEN_EDIT_MODAL})
 }
 
@@ -94,5 +94,13 @@ export const updateFormValues = (info) => {
 
 export const resetFormValues = () => {
     return({type: RESET_FORM_VALUES})
+}
+
+export const showToast = () => {
+    return({type: SHOW_TOAST})
+}
+
+export const hideToast = () => {
+    return({type: HIDE_TOAST})
 }
 

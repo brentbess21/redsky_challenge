@@ -1,12 +1,14 @@
 import React from 'react';
 
+import Loading from './Loading';
+
 import { connect } from 'react-redux';
 
-import { closeEditModal, resetFormValues, updateFormValues, updateUser } from '../actions/users-actions';
+import { closeEditModal, resetFormValues, updateFormValues, updateUser, showToast, hideToast } from '../actions/users-actions';
 
 const EditUserForm = (props) => {
 
-    const { userFormValues,  resetFormValues, showEditModal, closeEditModal, updateFormValues, updateUser } = props;
+    const { userFormValues,  resetFormValues, showEditModal, closeEditModal, updateFormValues, updateUser, showToast, hideToast, loading } = props;
 
     const changeHandler = (e) => {
         const name = e.target.name
@@ -20,15 +22,28 @@ const EditUserForm = (props) => {
         closeEditModal();
     }
 
+    const toastHandler = () => {
+        showToast();
+        setTimeout(hideToast, 4000);
+    }
+
     const editHandler = (e) => {
         e.preventDefault();
         const updatedUser = {
+            id: userFormValues.id,
             first_name: userFormValues.first_name,
             last_name: userFormValues.last_name,
             email: userFormValues.email,
             avatar: userFormValues.avatar
         }
-        updateUser(updatedUser)
+        updateUser(updatedUser);
+        closeEditModal();
+        toastHandler();
+        resetFormValues();
+    }
+
+    if(loading) {
+        return <Loading />
     }
 
     return(
@@ -91,10 +106,11 @@ const EditUserForm = (props) => {
 const mapStateToProps = (state) => {
     return({
         showEditModal: state.showEditModal,
-        userFormValues: state.userFormValues
+        userFormValues: state.userFormValues,
+        loading: state.loading
     })
 }
 
-const mapDispatchToProps = {closeEditModal, updateFormValues, resetFormValues, updateUser}
+const mapDispatchToProps = {closeEditModal, updateFormValues, resetFormValues, updateUser, showToast, hideToast}
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditUserForm);

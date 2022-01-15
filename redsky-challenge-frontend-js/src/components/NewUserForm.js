@@ -1,36 +1,48 @@
 import React from 'react';
 
+import Loading from './Loading';
+
 import { connect } from 'react-redux';
-import { closeCreateModal, updateFormValues, resetFormValues, createNewUser } from './../actions/users-actions';
+import { closeCreateModal, updateFormValues, resetFormValues, createNewUser, showToast, hideToast } from './../actions/users-actions';
 
 const NewUserForm = (props) => {
 
-    const { userFormValues, showCreateModal, closeCreateModal, updateFormValues, createNewUser, resetFormValues } = props;
+    const { userFormValues, showCreateModal, closeCreateModal, updateFormValues, createNewUser, resetFormValues, showToast, hideToast, loading } = props;
 
-        const changeHandler = (e) => {
-            const name = e.target.name
-            const value = e.target.value
-            updateFormValues({...userFormValues, [name]: value})
-        }
+    const changeHandler = (e) => {
+        const name = e.target.name
+        const value = e.target.value
+        updateFormValues({...userFormValues, [name]: value})
+    }
 
-        const cancelHandler = (e) => {
-            e.preventDefault();
-            closeCreateModal();
-            resetFormValues();
-        }
+    const cancelHandler = (e) => {
+        e.preventDefault();
+        closeCreateModal();
+        resetFormValues();
+    }
 
-        const submitHandler = (e) => {
-            e.preventDefault();
-            const newUser = {
-                id: Date.now(),
-                first_name: userFormValues.first_name,
-                last_name: userFormValues.last_name,
-                email: userFormValues.email,
-                avatar: userFormValues.avatar
-            }
-            createNewUser(newUser);
-            resetFormValues();
+    const toastHandler = () => {
+        showToast();
+        setTimeout(hideToast, 4000);
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        const newUser = {
+            id: Date.now(),
+            first_name: userFormValues.first_name,
+            last_name: userFormValues.last_name,
+            email: userFormValues.email,
+            avatar: userFormValues.avatar
         }
+        createNewUser(newUser);
+        toastHandler();
+        resetFormValues();
+    }
+
+    if(loading) {
+        return <Loading />
+    }
     
     return(
         <div>
@@ -97,6 +109,6 @@ const mapStateToProps = (state) => {
     })
 }
 
-const mapDispatchToProps = {closeCreateModal, updateFormValues, resetFormValues, createNewUser}
+const mapDispatchToProps = {closeCreateModal, updateFormValues, resetFormValues, createNewUser, showToast, hideToast}
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewUserForm);

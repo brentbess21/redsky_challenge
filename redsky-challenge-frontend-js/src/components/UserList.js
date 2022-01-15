@@ -4,14 +4,19 @@ import { connect } from 'react-redux';
 import { getUsers } from './../actions/users-actions';
 
 import User from './User';
+import Loading from './Loading';
 
 const UserList = (props) => {
 
-    const { users, getUsers } = props
+    const { users, getUsers, loading } = props
 
     useEffect(()=> {
         getUsers();
     },[])
+
+    if(loading) {
+        return <Loading />
+    }
 
     return (
         <main className='user-list'>
