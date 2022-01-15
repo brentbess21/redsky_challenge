@@ -1,13 +1,25 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
 
-import { deleteUser, openEditModal, updateFormValues, showToast, hideToast } from '../actions/users-actions';
+import { 
+    deleteUser, 
+    openEditModal, 
+    updateFormValues, 
+    showToast, 
+    hideToast 
+} from '../actions/users-actions';
 
 
 const User = (props) => {
 
-    const { user, deleteUser, openEditModal, updateFormValues, showToast, hideToast } = props;
+    const { 
+        user, 
+        deleteUser, 
+        openEditModal, 
+        updateFormValues, 
+        showToast, 
+        hideToast 
+    } = props;
 
     const toastHandler = () => {
         showToast();

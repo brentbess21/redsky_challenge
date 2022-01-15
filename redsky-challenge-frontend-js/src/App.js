@@ -6,17 +6,13 @@ import NewUserForm from './components/NewUserForm';
 import EditUserForm from './components/EditUserForm';
 import ActionToast from './components/ActionToast';
 
-
 import { openCreateModal } from './actions/users-actions';
-
 
 function App(props) {
 
   const { openCreateModal } = props;
 
   return (
-
-    <div>
       <div className='app-container'>
           <ActionToast />
 
@@ -27,12 +23,11 @@ function App(props) {
           <div className='create-user-btn'>
             <button onClick={openCreateModal} className='button'>Create New User</button>
           </div>
+          
           <NewUserForm />
           <EditUserForm />
           <UserList />
       </div>
-    </div>
-
   );
 }
 

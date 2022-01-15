@@ -219,7 +219,6 @@ th, td {
   width: 100%;
   position: fixed;
   transition: all .3s;
-  border: 2px solid yellow;
   top: 0;
   left: 0;
 }
@@ -268,8 +267,7 @@ label {
   margin: .5rem;
 }
 
-
-
+/* loading */
 
 .loading-container {
   width: 100vw;

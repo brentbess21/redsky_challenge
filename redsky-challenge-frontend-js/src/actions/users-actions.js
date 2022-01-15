@@ -28,11 +28,11 @@ export const getUsers = () => (dispatch) => {
 
     axios.get('https://reqres.in/api/users')
         .then(res=> {
-            const users = res.data.data
-            dispatch({type:SUCCESS_FETCHING_USERS, payload: users})
+            const users = res.data.data;
+            dispatch({type:SUCCESS_FETCHING_USERS, payload: users});
         })
         .catch(err=> {
-            dispatch({type: ERROR_FETCHING_USERS, payload: err})
+            dispatch({type: ERROR_FETCHING_USERS, payload: err});
         })
 }
 
@@ -41,10 +41,10 @@ export const createNewUser = (newUser) => (dispatch) => {
 
     axios.post('https://reqres.in/api/users', newUser)
         .then(res=> {
-            dispatch({type:SUCCESS_CREATE_USER, payload: res.data})
+            dispatch({type:SUCCESS_CREATE_USER, payload: res.data});
         })
         .catch(err=> {
-            dispatch({type:ERROR_CREATE_USER, payload: err})
+            dispatch({type:ERROR_CREATE_USER, payload: err});
         })
 }
 
@@ -53,10 +53,10 @@ export const deleteUser = (userInfo)  => (dispatch) => {
 
     axios.delete(`https://reqres.in/api/users/${userInfo.id}`)
         .then(res=> {
-            dispatch({type:SUCCESS_DELETE_USER, payload: userInfo})
+            dispatch({type:SUCCESS_DELETE_USER, payload: userInfo});
         })
         .catch(err=> {
-            dispatch({type: ERROR_DELETE_USER, payload: err})
+            dispatch({type: ERROR_DELETE_USER, payload: err});
         })
 }
 
@@ -65,42 +65,42 @@ export const updateUser = (userInfo) => (dispatch) => {
 
     axios.put(`https://reqres.in/api/users/${userInfo.id}`)
         .then(res=> {
-            dispatch({type: SUCCESS_UPDATE_USER, payload: userInfo})
+            dispatch({type: SUCCESS_UPDATE_USER, payload: userInfo});
         })
         .catch(err => {
-            dispatch({type: ERROR_DELETE_USER, payload: err})
+            dispatch({type: ERROR_DELETE_USER, payload: err});
         })
 }
 
 export const openCreateModal = () => {
-    return({type: OPEN_CREATE_MODAL})
+    return({type: OPEN_CREATE_MODAL});
 }
 
 export const openEditModal = () => {
-    return({type: OPEN_EDIT_MODAL})
+    return({type: OPEN_EDIT_MODAL});
 }
 
 export const closeCreateModal = () => {
-    return({type: CLOSE_CREATE_MODAL})
+    return({type: CLOSE_CREATE_MODAL});
 }
 
 export const closeEditModal = () => {
-    return({type: CLOSE_EDIT_MODAL})
+    return({type: CLOSE_EDIT_MODAL});
 }
 
 export const updateFormValues = (info) => {
-    return ({type: UPDATE_FORM_VALUES, payload: info})
+    return ({type: UPDATE_FORM_VALUES, payload: info});
 }
 
 export const resetFormValues = () => {
-    return({type: RESET_FORM_VALUES})
+    return({type: RESET_FORM_VALUES});
 }
 
 export const showToast = () => {
-    return({type: SHOW_TOAST})
+    return({type: SHOW_TOAST});
 }
 
 export const hideToast = () => {
-    return({type: HIDE_TOAST})
+    return({type: HIDE_TOAST});
 }
 

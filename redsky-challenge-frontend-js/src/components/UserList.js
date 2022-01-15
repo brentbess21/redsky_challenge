@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 
-import { getUsers } from './../actions/users-actions';
-
 import User from './User';
 import Loading from './Loading';
+
+import { getUsers } from './../actions/users-actions';
 
 const UserList = (props) => {
 

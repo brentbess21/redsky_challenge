@@ -1,19 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Loading from './Loading';
 
-import { connect } from 'react-redux';
-
-import { closeEditModal, resetFormValues, updateFormValues, updateUser, showToast, hideToast } from '../actions/users-actions';
+import { 
+    closeEditModal,
+    resetFormValues, 
+    updateFormValues, 
+    updateUser, 
+    showToast, 
+    hideToast 
+} from '../actions/users-actions';
 
 const EditUserForm = (props) => {
 
-    const { userFormValues,  resetFormValues, showEditModal, closeEditModal, updateFormValues, updateUser, showToast, hideToast, loading } = props;
+    const { userFormValues,  
+        resetFormValues, 
+        showEditModal, 
+        closeEditModal, 
+        updateFormValues, 
+        updateUser, 
+        showToast, 
+        hideToast, 
+        loading 
+    } = props;
 
     const changeHandler = (e) => {
-        const name = e.target.name
-        const value = e.target.value
-        updateFormValues({...userFormValues, [name]: value})
+        const name = e.target.name;
+        const value = e.target.value;
+        updateFormValues({...userFormValues, [name]: value});
     }
 
     const cancelHandler = (e) => {

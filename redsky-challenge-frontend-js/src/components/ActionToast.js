@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { showToast, hideToast } from './../actions/users-actions';
+import { hideToast } from './../actions/users-actions';
 
 import { Toast, Row, Col, ToastContainer } from 'react-bootstrap';
 
 const ActionToast = (props) => {
 
-    const { showToast, showActionToast, prevAction } = props;
+    const { showActionToast, prevAction } = props;
     return (
         <Row>
             <Col xs={20}>
                 <ToastContainer className='p-1' position='top-end'> 
-                    <Toast onClose={hideToast} show={showActionToast} delay={3000} autohide>
+                    <Toast onClose={hideToast} show={showActionToast} delay={4000} autohide>
                         <Toast.Header>
                             <img
                             src="holder.js/20x20?text=%20"
@@ -21,7 +21,6 @@ const ActionToast = (props) => {
                             onClick={hideToast}
                             />
                             <strong className="me-auto">Success!</strong>
-                            <small>Just Now</small>
                         </Toast.Header>
                         <Toast.Body>
                             A user was just {prevAction}!
@@ -40,6 +39,6 @@ const mapStateToProps = (state) => {
     })
 }
 
-const mapDispatchToProps = {showToast, hideToast}
+const mapDispatchToProps = {hideToast}
 
 export default connect(mapStateToProps, mapDispatchToProps)(ActionToast);
