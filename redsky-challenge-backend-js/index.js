@@ -1,8 +1,10 @@
 const server = require('./api/server');
 
-const port = 6000;
+const User = require('./api/user-model');
+
+const port = 8080;
 
 server.listen(port, ()=> {
-    console.log(`*** Listening on localhost:${port}`);
+    console.log(`*** Listening on localhost:${port} ***`);
 })
 
