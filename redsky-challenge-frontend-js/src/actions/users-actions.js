@@ -26,9 +26,9 @@ export const HIDE_TOAST = 'HIDE_TOAST';
 export const getUsers = () => (dispatch) => {
     dispatch({type: START_FETCHING_USERS});
 
-    axios.get('https://reqres.in/api/users')
+    axios.get('http://localhost:8080/api/users')
         .then(res=> {
-            const users = res.data.data;
+            const users = res.data;
             dispatch({type:SUCCESS_FETCHING_USERS, payload: users});
         })
         .catch(err=> {
@@ -39,7 +39,7 @@ export const getUsers = () => (dispatch) => {
 export const createNewUser = (newUser) => (dispatch) => {
     dispatch({type: START_CREATE_USER});
 
-    axios.post('https://reqres.in/api/users', newUser)
+    axios.post('http://localhost:8080/api/users', newUser)
         .then(res=> {
             dispatch({type:SUCCESS_CREATE_USER, payload: res.data});
         })
@@ -51,7 +51,7 @@ export const createNewUser = (newUser) => (dispatch) => {
 export const deleteUser = (userInfo)  => (dispatch) => {
     dispatch({type: START_DELETE_USER});
 
-    axios.delete(`https://reqres.in/api/users/${userInfo.id}`)
+    axios.delete(`http://localhost:8080/api/users/${userInfo.id}`)
         .then(res=> {
             dispatch({type:SUCCESS_DELETE_USER, payload: userInfo});
         })
@@ -63,7 +63,7 @@ export const deleteUser = (userInfo)  => (dispatch) => {
 export const updateUser = (userInfo) => (dispatch) => {
     dispatch({type: START_UPDATE_USER});
 
-    axios.put(`https://reqres.in/api/users/${userInfo.id}`)
+    axios.put(`http://localhost:8080/api/users/${userInfo.id}`)
         .then(res=> {
             dispatch({type: SUCCESS_UPDATE_USER, payload: userInfo});
         })
