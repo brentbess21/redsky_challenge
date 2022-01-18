@@ -66,9 +66,9 @@ export const deleteUser = (userInfo: User)  => (dispatch: Dispatch) => {
 export const updateUser = (userInfo: User) => (dispatch: Dispatch) => {
     dispatch({type: START_UPDATE_USER});
 
-    axios.put(`http://localhost:8080/api/users/${userInfo.id}`)
+    axios.put(`http://localhost:8080/api/users/${userInfo.id}`, userInfo)
         .then(res=> {
-            dispatch({type: SUCCESS_UPDATE_USER, payload: userInfo});
+            dispatch({type: SUCCESS_UPDATE_USER, payload: res.data});
         })
         .catch(err => {
             dispatch({type: ERROR_DELETE_USER, payload: err});

@@ -51,7 +51,6 @@ const NewUserForm: FC<CreateUserFormProps & CreateUserFormActionProps> = (props)
     const submitHandler = (e: React.FormEvent) => {
         e.preventDefault();
         const newUser: User = {
-            id: Date.now(),
             first_name: userFormValues.first_name,
             last_name: userFormValues.last_name,
             email: userFormValues.email,

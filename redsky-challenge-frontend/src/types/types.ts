@@ -1,26 +1,18 @@
-import UserInfo from "../components/UserInfo"
-
 export interface User {
-    id: number,
+    id?: number,
     first_name: string,
     last_name: string,
     email: string,
     avatar: string,
 }
 
-export interface Props {
-    loading?: boolean,
-    errors?: string,
-    users?: User[],
-    userFormValues?: User,
-    showCreateModal?: boolean,
-    showEditModal?: boolean,
-    showActionToast?: boolean,
-    prevAction?: string
-}
-
 export interface AppActionProps {
     openCreateModal: ()=> void
+}
+
+export interface ActionToastProps {
+    showActionToast: boolean,
+    prevAction: string
 }
 
 export interface EditUserFormActionProps {

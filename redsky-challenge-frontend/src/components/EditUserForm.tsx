@@ -48,7 +48,6 @@ const EditUserForm: FC<EditUserFormProps & EditUserFormActionProps> = (props) =>
 
     const editHandler = (e: React.FormEvent) => {
         e.preventDefault();
-       
         const updatedUser = {
             id: userFormValues.id,
             first_name: userFormValues.first_name,

@@ -46,10 +46,16 @@ const UserInfo: FC <UserInfoProps & UserInfoActionProps> = (props) => {
         openEditModal();
     }
 
+    const ghostImg = 'https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/001/959/original/ghost.png'
 
     return (
         <tr className='fs-200'>
-            <td><img src={user.avatar} alt={user.last_name} className='avatar' /></td>
+            {user.avatar === '' 
+            ? 
+            <td><img src={ghostImg} alt={user.last_name} className='avatar' /></td> 
+            : 
+            <td><img src={user.avatar} alt={user.last_name} className='avatar' /></td>}
+            
             <td>{user.first_name}</td>
             <td>{user.last_name}</td>
             <td>{user.email}</td>

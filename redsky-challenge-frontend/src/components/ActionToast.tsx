@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { connect } from 'react-redux';
 
-import { Props, State } from './../types/types';
+import { State, ActionToastProps } from './../types/types';
 
 import { hideToast } from './../actions/users-actions';
 
 import { Toast, Row, Col, ToastContainer } from 'react-bootstrap';
 
-const ActionToast: FC<Props> = (props) => {
+const ActionToast: FC<ActionToastProps> = (props) => {
 
     const { showActionToast, prevAction } = props;
     return (

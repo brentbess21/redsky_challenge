@@ -6,11 +6,11 @@ import NewUserForm from './components/NewUserForm';
 import EditUserForm from './components/EditUserForm';
 import ActionToast from './components/ActionToast';
 
-import { State, AppActionProps, Props } from './types/types';
+import { State, AppActionProps } from './types/types';
 
 import { openCreateModal } from './actions/users-actions';
 
-const App: FC<AppActionProps & Props> = (props) => {
+const App: FC<AppActionProps> = (props) => {
 
   const { openCreateModal } = props;
 
@@ -32,7 +32,7 @@ const App: FC<AppActionProps & Props> = (props) => {
   );
 }
 
-const mapStateToProps = (state: State): Props => {
+const mapStateToProps = (state: State) => {
   return({
     showCreateModal: state.showCreateModal,
   })

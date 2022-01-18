@@ -22,12 +22,12 @@ import {
 } from "../actions/users-actions";
 
 
-import { Action, User } from './../types/types';
+import { Action, User, State } from './../types/types';
 
-export const initialState = {
+export const initialState: State = {
     loading: false,
-    error: '',
-    users: [] as User[],
+    errors: '',
+    users: [],
     userFormValues: {
         id: 0,
         first_name: '',
